@@ -16,9 +16,9 @@ public:
 	Plane(const long long& ID, const char plane[], const char type[], const long long& flights);
 	void initializePlaneThroughInput();
 	void printInfo();
+	bool isEmpty();
 
 	void writePlaneToFile();
-	bool isEmpty();
 	Plane getPlaneByID(const long long& IdToSeek);
 };
 
