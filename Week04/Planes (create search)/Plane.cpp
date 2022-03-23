@@ -45,7 +45,7 @@ void Plane::writePlaneToFile()
 		return;
 	}
 
-	outFile.write(reinterpret_cast<const char*>(&*this), sizeof(*this));
+	outFile.write(reinterpret_cast<const char*>(this), sizeof(*this));
 	outFile.close();
 }
 
@@ -60,18 +60,21 @@ Plane Plane::getPlaneByID(const long long& IdToSeek)
 	if (!inFile.is_open())
 	{
 		std::cout << "Input file not open. Could not look for plane.\n";
-		return {};
+		return Plane();
 	}
 
 	Plane buff;
 
 	inFile.seekg(0, inFile.beg);
-	while (inFile.read(reinterpret_cast<char*>(&buff), sizeof(buff)));
-	if (buff.id_ == IdToSeek)
+	while (inFile.read(reinterpret_cast<char*>(&buff), sizeof(buff)))
 	{
-		inFile.close();
-		return buff;
+		if (buff.id_ == IdToSeek)
+		{
+			inFile.close();
+			return buff;
+		}
 	}
+	
 
 	inFile.close();
 	return {};
