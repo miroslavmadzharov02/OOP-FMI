@@ -3,20 +3,16 @@
 #include <fstream>
 #define FILE_PATH "Planes.db" 
 
-Plane::Plane() 
+Plane::Plane() : id_(0), flights_(0)
 {
-	id_ = 0;
 	plane_[0] = '\0';
 	type_[0] = '\0';
-	flights_ = 0;
 }
 
-Plane::Plane(const long long& id, const char plane[], const char type[], const long long& flights)
+Plane::Plane(const long long& id, const char plane[], const char type[], const long long& flights) : id_(id), flights_(flights)
 {
-	id_ = id;
 	strcpy_s(plane_, plane);
 	strcpy_s(type_, type);
-	flights_ = flights;
 }
 
 void Plane::initializePlaneThroughInput()
