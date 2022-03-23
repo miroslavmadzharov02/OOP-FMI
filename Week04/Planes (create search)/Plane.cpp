@@ -1,39 +1,42 @@
 #include "Plane.h"
+#include <iostream>
+#include <fstream>
+#define FILE_PATH "Planes.db" 
 
 Plane::Plane() 
 {
-	this->ID_ = 0;
-	this->plane_[0] = '\0';
-	this->type_[0] = '\0';
-	this->flights_ = 0;
+	id_ = 0;
+	plane_[0] = '\0';
+	type_[0] = '\0';
+	flights_ = 0;
 }
 
-Plane::Plane(const long long& ID, const char plane[], const char type[], const long long& flights)
+Plane::Plane(const long long& id, const char plane[], const char type[], const long long& flights)
 {
-	this->ID_ = ID;
-	strcpy_s(this->plane_, plane);
-	strcpy_s(this->type_, type);
-	this->flights_ = flights;
+	id_ = id;
+	strcpy_s(plane_, plane);
+	strcpy_s(type_, type);
+	flights_ = flights;
 }
 
 void Plane::initializePlaneThroughInput()
 {
 	std::cout << "Enter ID:\n";
-	std::cin >> this->ID_;
+	std::cin >> id_;
 	std::cout << "Enter plane name:\n";
-	std::cin >> this->plane_;
+	std::cin >> plane_;
 	std::cout << "Enter plane type:\n";
-	std::cin >> this->type_;
+	std::cin >> type_;
 	std::cout << "Enter amount of flights plane has:\n";
-	std::cin >> this->flights_;
+	std::cin >> flights_;
 }
 
 void Plane::printInfo()
 {
-	std::cout << "Plane Id: " << this->ID_
-		<< "\nPlane name: " << this->plane_
-		<< "\nPlane type: " << this->type_
-		<< "\nAmount of flights: " << this->flights_ << '\n';
+	std::cout << "Plane Id: " << id_
+		<< "\nPlane name: " << plane_
+		<< "\nPlane type: " << type_
+		<< "\nAmount of flights: " << flights_ << '\n';
 }
 
 void Plane::writePlaneToFile()
@@ -52,7 +55,7 @@ void Plane::writePlaneToFile()
 
 bool Plane::isEmpty()
 {
-	return ID_ == 0 && flights_ == 0 && plane_[0] == '\0' && type_[0] == '\0';
+	return id_ == 0 && flights_ == 0 && plane_[0] == '\0' && type_[0] == '\0';
 }
 
 Plane Plane::getPlaneByID(const long long& IdToSeek)
@@ -68,7 +71,7 @@ Plane Plane::getPlaneByID(const long long& IdToSeek)
 
 	inFile.seekg(0, inFile.beg);
 	while (inFile.read(reinterpret_cast<char*>(&buff), sizeof(buff)));
-	if (buff.ID_ == IdToSeek)
+	if (buff.id_ == IdToSeek)
 	{
 		inFile.close();
 		return buff;
