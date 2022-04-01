@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef PLANES
+#define PLANES
+
 class Plane
 {
 private:
@@ -19,3 +22,4 @@ public:
 	Plane getPlaneByID(const long long& IdToSeek, const char* path);
 };
 
+#endif PLANES
