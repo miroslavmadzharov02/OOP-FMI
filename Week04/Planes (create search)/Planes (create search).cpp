@@ -3,18 +3,18 @@
 #include <fstream>
 #define FILE_PATH "Planes.db" 
 
-bool doesFileExist()
+bool doesFileExist(const char* path)
 {
-    std::ifstream inFile(FILE_PATH);
+    std::ifstream inFile(path);
     bool result = inFile.good();
     inFile.close();
 
     return result;
 }
 
-void createFile()
+void createFile(const char* path)
 {
-    std::ofstream outFile(FILE_PATH);
+    std::ofstream outFile(path);
     outFile.close();
 }
 
@@ -37,8 +37,8 @@ void printMenu()
 
 int main()
 {
-    if (!doesFileExist())
-        createFile();
+    if (!doesFileExist(FILE_PATH))
+        createFile(FILE_PATH);
 
     char inputAction[16];
     do
@@ -51,7 +51,7 @@ int main()
         {
             Plane inputPlane;
             inputPlane.initializePlaneThroughInput();
-            inputPlane.writePlaneToFile();
+            inputPlane.writePlaneToFile(FILE_PATH);
             std::cout << "Record saved.\n";
         }
         else if (!strcmp(inputAction, "search"))
@@ -60,7 +60,7 @@ int main()
             std::cout << "Enter ID to look for:\n";
             std::cin >> idToSeek;
 
-            Plane foundPlane = foundPlane.getPlaneByID(idToSeek);
+            Plane foundPlane = foundPlane.getPlaneByID(idToSeek, FILE_PATH);
             if (foundPlane.isEmpty())
                 std::cout << "Record not found.\n";
             else

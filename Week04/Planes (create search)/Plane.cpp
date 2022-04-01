@@ -35,9 +35,9 @@ void Plane::printInfo()
 		<< "\nAmount of flights: " << flights_ << '\n';
 }
 
-void Plane::writePlaneToFile()
+void Plane::writePlaneToFile(const char* path)
 {
-	std::ofstream outFile(FILE_PATH, std::ios::binary | std::ios::app);
+	std::ofstream outFile(path, std::ios::binary | std::ios::app);
 
 	if (!outFile.is_open())
 	{
@@ -54,9 +54,9 @@ bool Plane::isEmpty()
 	return id_ == 0 && flights_ == 0 && plane_[0] == '\0' && type_[0] == '\0';
 }
 
-Plane Plane::getPlaneByID(const long long& IdToSeek)
+Plane Plane::getPlaneByID(const long long& IdToSeek, const char* path)
 {
-	std::ifstream inFile(FILE_PATH, std::ios::binary);
+	std::ifstream inFile(path, std::ios::binary);
 	if (!inFile.is_open())
 	{
 		std::cout << "Input file not open. Could not look for plane.\n";

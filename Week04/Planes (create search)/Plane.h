@@ -15,7 +15,7 @@ public:
 	void printInfo();
 	bool isEmpty();
 
-	void writePlaneToFile();
-	Plane getPlaneByID(const long long& IdToSeek);
+	void writePlaneToFile(const char* path);
+	Plane getPlaneByID(const long long& IdToSeek, const char* path);
 };
 
