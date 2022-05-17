@@ -1,2 +1,2 @@
-# Seminar-OOP
-Used to store tasks from the "Object-oriented programming" course at Sofia University FMI.
+# OOP-FMI
+Used to store work from the "Object-oriented programming" course and practicum at Sofia University FMI.
